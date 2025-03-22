@@ -1,0 +1,229 @@
+/* Timer List */
+.timer-list {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 90%;
+  text-align: center;
+}
+
+/* Timer Grid */
+.timer-grid {
+  display: grid;
+  gap: 15px;
+  padding: 10px;
+  justify-content: center;
+}
+
+/* Responsive Grid */
+@media (min-width: 1200px) {
+  .timer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .timer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .timer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Timer Card */
+.timer-card {
+  background-size: cover !important;
+  background-position: center !important;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.timer-card:hover {
+  transform: scale(1.05);
+}
+
+/* Darker Overlay */
+.timer-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Timer Name & Category */
+.timer-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.timer-category {
+  font-size: 14px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Timer Controls */
+.timer-controls {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* General Button Styling */
+button {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 80px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Button Colors */
+.start-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.pause-button {
+  background-color: #ffc107;
+  color: black;
+}
+
+.reset-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #d63031;
+}
+
+/* Timer Completion Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal h3 {
+  margin-bottom: 10px;
+}
+
+.modal button {
+  background-color: #0072ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  opacity: 0.8;
+}
+
+/* ========== FIXING EDIT FORM LAYOUT ========== */
+.edit-form {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 90%;
+}
+
+.edit-form input,
+.edit-form select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.edit-duration {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.save-button {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  font-size: 14px;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-button:hover {
+  opacity: 0.8;
+}
