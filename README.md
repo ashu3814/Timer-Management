@@ -3,7 +3,6 @@
 ## 🚀 Overview
 This project is a **React-based Timer Management App** built as part of an **assignment**. It demonstrates my ability to develop a feature-rich web application from scratch, showcasing **state management, UI responsiveness, animations, and interactivity**. The app enables users to **create, edit, start, pause, reset, and delete timers**, with a visually appealing **circular countdown animation**. It also features **dynamic background gradients based on categories, keyboard shortcuts, sound alerts, dark mode, and category filtering**.
 
-![Timer App Screenshot](https://via.placeholder.com/800x450)
 
 ## 🎯 Features Implemented
 
@@ -134,7 +133,6 @@ The UI/UX design for this project was created in Figma, following a systematic d
    - Documented component behavior and states
    - Created responsive design guidelines
 
-[View Figma Design](https://figma.com/file/example) (Add your actual Figma link here)
 
 ## 🚀 Future Enhancements
 
