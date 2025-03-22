@@ -1,12 +1,127 @@
-/* Timer List */
+/* Timer List Container */
 .timer-list {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
-  width: 90%;
+  flex: 3;
   text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  backdrop-filter: blur(5px);
+  background-image: url('https://images.unsplash.com/photo-1506784365847-bbad939e9335?q=80&w=1920&auto=format');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.timer-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 0;
+}
+
+.timer-list.dark {
+  background: rgba(30, 30, 30, 0.85);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1920&auto=format');
+}
+
+.timer-list.dark::before {
+  background: rgba(30, 30, 30, 0.85);
+}
+
+.timer-list h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* No Timers Message */
+.no-timers {
+  padding: 40px 20px;
+  font-size: 18px;
+  color: #6c757d;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  margin: 20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timer-list.dark .no-timers {
+  background: rgba(255, 255, 255, 0.05);
+  color: #adb5bd;
+}
+
+/* Timer Completion Notifications */
+.completion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.completion-notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d4edda;
+  color: #155724;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.timer-list.dark .completion-notification {
+  background: #264d33;
+  color: #d4edda;
+  border-left: 4px solid #28a745;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.completion-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.completion-icon {
+  background: #28a745;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.dismiss-notice {
+  background: transparent;
+  color: #155724;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 5px;
+  min-width: auto;
+}
+
+.timer-list.dark .dismiss-notice {
+  color: #d4edda;
 }
 
 /* Timer Grid */
@@ -15,28 +130,24 @@
   gap: 15px;
   padding: 10px;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 /* Responsive Grid */
 @media (min-width: 1200px) {
   .timer-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 1199px) and (min-width: 768px) {
   .timer-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .timer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .timer-grid {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -44,47 +155,136 @@
 
 /* Timer Card */
 .timer-card {
-  background-size: cover !important;
-  background-position: center !important;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
   text-align: center;
-  height: 250px;
+  height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .timer-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Darker Overlay */
+.timer-card.running {
+  animation: pulseLight 2s infinite;
+}
+
+.timer-list.dark .timer-card.running {
+  animation: pulseDark 2s infinite;
+}
+
+@keyframes pulseLight {
+  0% {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(0, 114, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes pulseDark {
+  0% {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(0, 114, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Timer Overlay */
 .timer-overlay {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
+.timer-header {
+  width: 100%;
+  text-align: center;
+}
+
+/* Keep all the existing classes unchanged below this line */
 /* Timer Name & Category */
 .timer-name {
   font-size: 20px;
   font-weight: bold;
   color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .timer-category {
   font-size: 14px;
-  color: white;
-  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Timer Display */
+.timer-display {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pulse-indicator {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #28a745;
+  border-radius: 50%;
+  right: -5px;
+  top: 10px;
+  animation: pulse 1s infinite;
 }
 
 /* Timer Controls */
@@ -96,6 +296,16 @@
   gap: 10px;
 }
 
+/* Keyboard Hint */
+.keyboard-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
 /* General Button Styling */
 button {
   padding: 8px 14px;
@@ -105,96 +315,79 @@ button {
   cursor: pointer;
   transition: 0.3s;
   min-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 500;
 }
 
 button:hover {
   opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
 }
 
 /* Button Colors */
 .start-button {
   background-color: #28a745;
   color: white;
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
 }
 
 .pause-button {
   background-color: #ffc107;
   color: black;
+  box-shadow: 0 2px 4px rgba(255, 193, 7, 0.3);
 }
 
 .reset-button {
   background-color: #dc3545;
   color: white;
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
 }
 
 .edit-button {
   background-color: #007bff;
   color: white;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
 }
 
 .delete-button {
   background-color: #ff4d4d;
   color: white;
-  border: none;
-  padding: 8px 14px;
-  font-size: 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(255, 77, 77, 0.3);
 }
 
-.delete-button:hover {
-  background-color: #d63031;
-}
-
-/* Timer Completion Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.modal h3 {
-  margin-bottom: 10px;
-}
-
-.modal button {
-  background-color: #0072ff;
+.save-button {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
   color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
-.modal button:hover {
-  opacity: 0.8;
+.cancel-button {
+  background-color: #6c757d;
+  color: white;
 }
 
-/* ========== FIXING EDIT FORM LAYOUT ========== */
+/* ========== EDIT FORM LAYOUT ========== */
 .edit-form {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: center;
+  gap: 15px;
   width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timer-list.dark .edit-form {
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 .edit-form input,
@@ -204,7 +397,13 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  max-width: 200px;
+}
+
+.timer-list.dark .edit-form input,
+.timer-list.dark .edit-form select {
+  background: #333;
+  border: 1px solid #555;
+  color: white;
 }
 
 .edit-duration {
@@ -213,17 +412,9 @@ button:hover {
   align-items: center;
 }
 
-.save-button {
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  color: white;
-  font-size: 14px;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.save-button:hover {
-  opacity: 0.8;
+.edit-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 5px;
 }

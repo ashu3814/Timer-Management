@@ -1,0 +1,112 @@
+/* Category Filter Container */
+.category-filter {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  backdrop-filter: blur(5px);
+  background-image: url('https://images.unsplash.com/photo-1495039617987-950e54c420a6?q=80&w=1920&auto=format');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.category-filter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 0;
+}
+
+.category-filter.dark {
+  background: rgba(30, 30, 30, 0.85);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  background-image: url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1920&auto=format');
+}
+
+.category-filter.dark::before {
+  background: rgba(30, 30, 30, 0.85);
+}
+
+.category-filter h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Category List */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* No Categories Message */
+.no-categories {
+  padding: 15px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.category-filter.dark .no-categories {
+  color: #adb5bd;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Category Button */
+.category-button {
+  padding: 10px 15px;
+  text-align: left;
+  border-radius: 8px;
+  background: #f8f9fa;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.category-filter.dark .category-button {
+  background: #2c2c2c;
+  color: #e0e0e0;
+}
+
+.category-button:hover {
+  background: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.category-filter.dark .category-button:hover {
+  background: #3a3a3a;
+}
+
+.category-button.active {
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 114, 255, 0.3);
+}
+
+.category-filter.dark .category-button.active {
+  box-shadow: 0 2px 6px rgba(0, 114, 255, 0.5);
+}

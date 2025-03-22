@@ -1,11 +1,168 @@
-/* App.css */
-.app-container {
-  text-align: center;
+/* Base styles */
+:root {
+  --primary-color: #0072ff;
+  --primary-gradient: linear-gradient(to right, #00c6ff, #0072ff);
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --edit-color: #007bff;
+  --delete-color: #ff4d4d;
+  --light-bg: #f8f9fa;
+  --dark-bg: #121212;
+  --light-card: #ffffff;
+  --dark-card: #1e1e1e;
+  --light-text: #212529;
+  --dark-text: #f8f9fa;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: "Poppins", sans-serif;
-  padding: 20px;
+  background-color: var(--light-bg);
+  color: var(--light-text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* App Container */
+.app-container {
   min-height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1920&auto=format');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 0;
+}
+
+.app-container.dark-mode {
+  background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=1920&auto=format');
+}
+
+.app-container.dark-mode::before {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* App Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.app-header h1 {
+  color: var(--light-text);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .app-header h1 {
+  color: var(--dark-text);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--box-shadow);
+  background-color: var(--light-card);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.dark-mode .theme-toggle {
+  background-color: var(--dark-card);
+  box-shadow: var(--dark-shadow);
+}
+
+/* App Main Layout */
+.app-main {
+  display: flex;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sidebar */
+.app-sidebar {
+  flex: 1;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: url("https://source.unsplash.com/1600x900/?technology,nature") no-repeat center center/cover;
+  gap: 20px;
+}
+
+/* Responsive Layout */
+@media (max-width: 1024px) {
+  .app-main {
+    flex-direction: column;
+  }
+  
+  .app-sidebar {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 10px;
+    background-position: left center;
+  }
+  
+  .app-header {
+    padding: 0 10px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 24px;
+  }
+  
+  .theme-toggle {
+    font-size: 20px;
+  }
+  
+  .app-container {
+    background-size: auto 100%;
+  }
 }
